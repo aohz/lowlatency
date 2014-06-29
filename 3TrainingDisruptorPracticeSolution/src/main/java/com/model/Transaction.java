@@ -9,6 +9,7 @@ import java.util.Date;
  * choose to enforce immutability on such objects.
  */
 public class Transaction {
+	private String id;
     private Date date;
     private BigDecimal amount;
     private String accountnbr;
@@ -17,7 +18,8 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(Date date, BigDecimal amount, String accountnbr, String type) {
+    public Transaction(String id, Date date, BigDecimal amount, String accountnbr, String type) {
+    	this.id = id;
         this.date = date;
         this.amount = amount;
         this.accountnbr = accountnbr;
@@ -58,6 +60,6 @@ public class Transaction {
     
     @Override
     public String toString() {
-        return String.format("%s [%s] %s %s", date, type, accountnbr, amount);
+        return String.format("[%s]  %s [%s] %s %s", id, date, type, accountnbr, amount);
     }
 }

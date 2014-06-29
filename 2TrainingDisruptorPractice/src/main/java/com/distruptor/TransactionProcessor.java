@@ -1,5 +1,13 @@
 package com.distruptor;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
 import com.model.Transaction;
 
 /**
@@ -43,6 +51,13 @@ import com.model.Transaction;
  */
 public class TransactionProcessor {
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(TransactionProcessor.class);
+
+	private final ExecutorService EXECUTOR = Executors.newCachedThreadPool();
+	private Disruptor disruptor;
+	private RingBuffer ringBuffer;
+	
 	public TransactionProcessor() {
 	}
 

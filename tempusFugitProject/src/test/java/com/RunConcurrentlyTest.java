@@ -16,13 +16,22 @@ import com.google.code.tempusfugit.concurrency.RepeatingRule;
 import com.google.code.tempusfugit.concurrency.annotations.Concurrent;
 import com.google.code.tempusfugit.concurrency.annotations.Repeating;
 
+/**
+ * 
+ * 5 threads run the first method; 5 threads threads run the second method; Each
+ * method is repeated 10 times. So each method is run 50 times
+ * 
+ * 
+ * @author hernalb
+ * 
+ */
 @RunWith(ConcurrentTestRunner.class)
 public class RunConcurrentlyTest {
 
 	@Rule
-	public ConcurrentRule cRule = new ConcurrentRule();
+	public ConcurrentRule concurrentRule = new ConcurrentRule();
 	@Rule
-	public RepeatingRule rRule = new RepeatingRule();
+	public RepeatingRule repetingRule = new RepeatingRule();
 
 	private static final AtomicInteger counter = new AtomicInteger();
 
@@ -31,7 +40,7 @@ public class RunConcurrentlyTest {
 	@Concurrent(count = 5)
 	public void incrementCounterTest() {
 		counter.getAndIncrement();
-		System.out.println("A " +  Thread.currentThread().getName());
+		System.out.println("A " + Thread.currentThread().getName());
 
 	}
 

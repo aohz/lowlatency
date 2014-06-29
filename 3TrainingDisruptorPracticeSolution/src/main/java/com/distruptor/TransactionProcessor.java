@@ -1,19 +1,9 @@
 package com.distruptor;
 
-import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
-
-
-
-
 import com.distruptor.event.TransactionEvent;
-import com.distruptor.handler.DemoWorkHandler;
 import com.distruptor.handler.GenericExceptionHandler;
 import com.distruptor.handler.JournalTransactionHandler;
 import com.distruptor.handler.PostTransactionHandler;
@@ -22,7 +12,6 @@ import com.distruptor.translator.TransactionEventPublisher;
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.ExceptionHandler;
 import com.lmax.disruptor.RingBuffer;
-import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.model.Transaction;
@@ -67,13 +56,10 @@ import com.model.Transaction;
  * 
  */
 public class TransactionProcessor {
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(TransactionProcessor.class);
-
+	
 	private final ExecutorService EXECUTOR = Executors.newCachedThreadPool();
-	private Disruptor disruptor;
-	private RingBuffer ringBuffer;
+	private Disruptor<TransactionEvent> disruptor;
+	private RingBuffer<TransactionEvent> ringBuffer;
 
 	private JournalTransactionHandler journal;
 	private ReplicateTransactionHandler replicate;

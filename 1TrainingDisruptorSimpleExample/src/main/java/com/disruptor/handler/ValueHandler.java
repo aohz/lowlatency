@@ -19,9 +19,6 @@ public class ValueHandler implements EventHandler<ValueEvent> {
 
 	public void onEvent(ValueEvent event, long sequence, boolean endOfBatch)
 			throws Exception {
-		// if (sequence == 5) {
-		// throw new RuntimeException("Simulate exception on valueHandler");
-		// }
 		logger.debug(this.name + "_" + event.getValue().toString());
 
 	}
