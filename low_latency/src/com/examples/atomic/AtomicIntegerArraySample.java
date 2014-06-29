@@ -1,4 +1,4 @@
-package com.atomic;
+package com.examples.atomic;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

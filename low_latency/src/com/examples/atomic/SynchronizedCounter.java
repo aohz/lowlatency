@@ -1,4 +1,4 @@
-package com.atomic;
+package com.examples.atomic;
 
 public class SynchronizedCounter {
 

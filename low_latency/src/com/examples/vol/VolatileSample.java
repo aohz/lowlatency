@@ -1,4 +1,4 @@
-package com.vol;
+package com.examples.vol;
 
 public class VolatileSample {
 

@@ -1,4 +1,4 @@
-package com.syncblock;
+package com.examples.syncblock;
 
 public class SyncBlockProdCons {
 	private static final int ITERATIONS = 10;

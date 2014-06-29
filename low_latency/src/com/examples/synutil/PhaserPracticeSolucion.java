@@ -1,4 +1,4 @@
-package com.synutil;
+package com.examples.synutil;
 
 import java.util.concurrent.Phaser;
 

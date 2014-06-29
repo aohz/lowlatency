@@ -1,4 +1,4 @@
-package com.syncblock;
+package com.examples.syncblock;
 
 public class SyncBlock2Locks {
 

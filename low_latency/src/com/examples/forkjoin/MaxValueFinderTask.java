@@ -1,4 +1,4 @@
-package com.forkjoin;
+package com.examples.forkjoin;
 
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;

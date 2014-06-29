@@ -1,4 +1,4 @@
-package com.collections;
+package com.examples.collections;
 
 //2 seconds
 //Do some real work here with postponed.getWorkItem()

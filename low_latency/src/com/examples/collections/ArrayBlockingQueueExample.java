@@ -1,4 +1,4 @@
-package com.collections;
+package com.examples.collections;
 
 import java.util.Date;
 import java.util.Random;
