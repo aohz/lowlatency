@@ -22,7 +22,7 @@ public class Practice10Solution {
 		}
 		System.out.println(result);
 		long end = System.nanoTime();
-		System.out.println(end - start);
+		System.out.println("Time(ns) :" + (end - start));
 	}
 }
 

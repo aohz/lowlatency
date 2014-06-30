@@ -26,7 +26,7 @@ public class Practice8Solution {
 		executorService.execute(producer);
 
 		countDownLatch.await();
-		executorService.shutdownNow();		
+		executorService.shutdownNow();
 	}
 }
 
@@ -54,8 +54,8 @@ class ConsumerPS implements Runnable {
 			System.out.println(Thread.currentThread().getName() + " "
 					+ new Date() + " Stopped");
 		} catch (InterruptedException e) {
-			// new CancellationException(Thread.currentThread().getName() + " "	+ new Date() + " Stopped while waiting");
-			System.out.println(Thread.currentThread().getName() + " "	+ new Date() + " Stopped while waiting");
+			System.out.println(Thread.currentThread().getName() + " "
+					+ new Date() + " Stopped while waiting");
 		}
 	}
 

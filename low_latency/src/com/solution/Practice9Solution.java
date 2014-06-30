@@ -2,6 +2,7 @@ package com.solution;
 
 import java.util.Date;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -12,16 +13,17 @@ public class Practice9Solution {
 
 	static final int ITERATIONS = 20;
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException,
+			ExecutionException {
 
 		BlockingQueue<Task> queue = new PriorityBlockingQueue<Task>(ITERATIONS);
 
 		Employee consumer = new Employee(queue);
 		Boss producer = new Boss(queue);
 
-		ExecutorService executorService = Executors.newFixedThreadPool(3);		
+		ExecutorService executorService = Executors.newFixedThreadPool(3);
 		executorService.execute(producer);
-		
+
 		executorService.execute(consumer);
 		executorService.execute(consumer);
 
@@ -33,13 +35,18 @@ class Task implements Comparable<Task> {
 
 	private int priotiry;
 
+	public int getPriotiry() {
+		return priotiry;
+	}
+
 	public Task(int priotiry) {
 		this.priotiry = priotiry;
 	}
 
 	@Override
 	public int compareTo(Task o) {
-		return priotiry;
+		return this.priotiry > o.getPriotiry() ? +1 : this.priotiry < o
+				.getPriotiry() ? -1 : 0;
 	}
 
 	@Override
@@ -61,7 +68,7 @@ class Employee implements Runnable {
 		try {
 			while (!Thread.currentThread().isInterrupted()) {
 				System.out.println(queue.take());
-				TimeUnit.SECONDS.sleep(2);
+				TimeUnit.MILLISECONDS.sleep(5);
 			}
 		} catch (InterruptedException e) {
 			System.out.println(Thread.currentThread().getName() + " "
@@ -84,7 +91,7 @@ class Boss implements Runnable {
 		try {
 			for (int i = 0; i < Practice9Solution.ITERATIONS; i++) {
 				queue.put(new Task(ThreadLocalRandom.current().nextInt(10)));
-				TimeUnit.SECONDS.sleep(1);
+				TimeUnit.MILLISECONDS.sleep(1);
 			}
 		} catch (InterruptedException e) {
 			System.out.println(Thread.currentThread().getName() + " "
