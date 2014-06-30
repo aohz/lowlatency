@@ -32,14 +32,25 @@ public class WaitForTest {
 	 */
 	@Test
 	public void testProducer() throws TimeoutException, InterruptedException {				
-		new Thread(new Producer(messages)).start();
-		waitOrTimeout(messagesIsFull(), Timeout.timeout(seconds(20)));	
+		Thread t  = new Thread(new Producer(messages));
+		t.start();
+		waitOrTimeout(messagesIsFull(), Timeout.timeout(seconds(20)));
+		waitOrTimeout(threadIsWaiting(t), Timeout.timeout(seconds(20)));
 	}
 
 	private Condition messagesIsFull() {
 		return new Condition() {
 			public boolean isSatisfied() {
 				return messages.remainingCapacity() == 0;
+			}
+		};
+	}
+	
+	private Condition threadIsWaiting(final Thread t) {
+		return new Condition() {
+			public boolean isSatisfied() {
+				System.out.println(t.getState());
+				return t.getState() == Thread.State.WAITING;
 			}
 		};
 	}
