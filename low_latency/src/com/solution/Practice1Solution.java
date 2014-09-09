@@ -32,11 +32,7 @@ public class Practice1Solution {
 						store.take();
 					}
 				} catch (InterruptedException e) {
-					System.out.println("Interrupted: "
-							+ Thread.currentThread().isInterrupted());
-					Thread.currentThread().interrupt();
-					System.out.println("Interrupted: "
-							+ Thread.currentThread().isInterrupted());
+					System.out.println("Interrupted");					
 				}
 			}
 
